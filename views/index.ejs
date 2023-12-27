@@ -1,0 +1,39 @@
+<!--header-->
+<%- include('partials/header.ejs') %>
+
+ <div class="head-box">
+    <h1>Daily Task</h1>
+ </div> 
+
+    <div class="main-box">
+        <div class="input-box">
+            <form action="/add" method="post">
+                <input type="text"  name="todo-text" id="text" placeholder="Add your task">
+                <button id="button">Add</button>
+            </form>
+        </div>
+        <div class="content-box container">
+            <% if ( locals.tasks ){ %> 
+                <% locals.tasks.forEach((item, index) => { %>
+                <div class="item-delete">
+                    <h5>👉 <%= item %></h5>
+                    <div class="button-div">
+                       <form action="/delete" method="post">
+                         <input type="hidden" name="index" value = "<%= index %>">
+                         <button class="delete-btn" type="submit">Delete</button>
+                       </form>
+                    </div>    
+                </div>    
+              <% }); %> 
+                
+            <% } else { %>  
+                <h5></h5>
+            <% } %> 
+            
+    
+        </div>    
+    </div>
+
+</body>
+
+</html>
